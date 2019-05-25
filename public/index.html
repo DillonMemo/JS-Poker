@@ -53,15 +53,13 @@
         </div>
     </div>
     <div id="menu">
-        <div id="m_start">
-            <center>
-                <input type="button" class="m_font" onclick="start()" id="m_gamestart" value="게임 시작" />
-            </center>
-        </div>
-        <button id="m_bet" class="m_font" onclick="betting()">
+        <button id="m_start" class="m_font cursor_pointer" onclick="start()">
+            게임시작
+        </button>
+        <button id="m_bet" class="m_font cursor_pointer" onclick="betting()">
             Betting
         </button>
-        <button id="m_die" class="m_font" onclick="die()">
+        <button id="m_die" class="m_font cursor_pointer" onclick="die()">
             Die
         </button>
         <div id="m_result">
@@ -70,11 +68,11 @@
             <div id="computer-3-result"></div>
             <div id="User-result"></div>
             <div id="result"></div>
-            <button id="m_nextgame" class="m_font" onclick="nextgame()">
+            <button id="m_nextgame" class="m_font cursor_pointer" onclick="nextgame()">
                 다음 게임
             </button>
         </div>
-        <button id="m_exit" class="m_font" onclick="exit();">
+        <button id="m_exit" class="m_font cursor_pointer" onclick="exit();">
             게임 종료
         </button>
         <div></div>
