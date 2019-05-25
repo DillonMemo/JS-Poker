@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script src="js/app.js"></script>
+
+    <title>Poker Game</title>
+</head>
+
+<body>
+    <div id='mainboard'>
+        <div id="board-1">
+            <div id='Computer-1'>
+                <div id="Computer-1-card"></div>
+                <div id="Computer-1-picture"></div>
+                <div id="Computer-1-name">아귀</div>
+                <div id="Computer-1-money"></div>
+            </div>
+            <div id='Computer-3'>
+                <div id="Computer-3-card"></div>
+                <div id="Computer-3-picture"></div>
+                <div id="Computer-3-name">고광렬</div>
+                <div id="Computer-3-money"></div>
+            </div>
+            <div id='board-2'>
+                <div id="blank"></div>
+                <div id="center-board">
+                    <div id="c_board_top">aaa</div>
+                    <div id="c_board_middle"></div>
+                    <div id="c_board_bottom">aaa</div>
+                </div>
+                <div id='board-3'>
+                    <div id='Computer-2'>
+                        <div id="Computer-2-card"></div>
+                        <div id="Computer-2-picture"></div>
+                        <div id="Computer-2-name">정마담</div>
+                        <div id="Computer-2-money"></div>
+                    </div>
+
+                    <div id='User'>
+                        <div id="User-card"></div>
+                        <div id="User-picture"></div>
+                        <div id="User-name">고니(유저)</div>
+                        <div id="User-money"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menu">
+        <div id="m_start">
+            <center>
+                <input type="button" class="m_font" onclick="start()" id="m_gamestart" value="게임 시작" />
+            </center>
+        </div>
+        <button id="m_bet" class="m_font" onclick="betting()">
+            Betting
+        </button>
+        <button id="m_die" class="m_font" onclick="die()">
+            Die
+        </button>
+        <div id="m_result">
+            <div id="computer-1-result"></div>
+            <div id="computer-2-result"></div>
+            <div id="computer-3-result"></div>
+            <div id="User-result"></div>
+            <div id="result"></div>
+            <button id="m_nextgame" class="m_font" onclick="nextgame()">
+                다음 게임
+            </button>
+        </div>
+        <button id="m_exit" class="m_font" onclick="exit();">
+            게임 종료
+        </button>
+        <div></div>
+    </div>
+</body>
+
+</html>
