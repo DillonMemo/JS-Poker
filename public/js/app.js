@@ -6,19 +6,27 @@ window.addEventListener('load', function () {
 });
 
 // user 객체 인스턴스 생성
-function user(){
+function user(_money){
     this.select = new Array(7);
 
     this._suit = new Array(7);
 
     this._rank = new Array(7);
 
-    this._money = { value : 990 };
+    if(_money === undefined){
+        this._money = { value : 990 };
+    }else{
+        this._money = _money;
+    }
+    
 
     this._flag = 0;
 
     this._index = [];
 }
+
+var game_flag = 0; // 게임이 시작중인지 확인하는 플래그
+var restart_flag = 0; // 게임이 재시작했는지 확인하는 플래그
 
 var card = new Array(40);
 
@@ -37,9 +45,6 @@ for(var i = 0; i < result.length; i++)
 var back = new Array(9); // 유저 2 ~ 4의 뒷면 이미지는 담는 배열
 var die = new Array(6); // 유저 2 ~ 4의 다이 이미지를 담는 배열
 var user_face = new Array(4); // 유저의 캐릭터 이미지 배열
-
-var game_flag = 0; // 게임이 시작중인지 확인하는 플래그
-var restart_flag = 0; // 게임이 재시작했는지 확인하는 플래그
 var num = 0; // 라운드 번호
 var back_num = 0; // 뒷면 이미지의 번호를 지정하는 변수
 var Betting_Account = 40;  // 총 베팅금
@@ -333,28 +338,63 @@ function bettingEvent() {
 }
 
 // 다이 버튼 이벤트 핸들러
-function die() {
-    console.log('die');
+function dieEvent() {
+    die_disable()  // 다이 선택시 베팅,다이 버튼 비활성화
+    next_enable()  // 다이 선택시 다음 게임 활성화
+    // 다이할시 총 베팅금액의 33%를 나눠줌
+    user2._money.value += Betting_Account / 3;
+    user3._money.value += Betting_Account / 3;
+    user4._money.value += Betting_Account / 3;
+
+    // 다이 내용 출력
+    document.getElementById('User-result').innerHTML = 'ME : Die 하셨습니다.';
+    document.getElementById('computer-1-result').innerHTML = '아귀 +' + Math.floor(Betting_Account / 3) + '원';
+    document.getElementById('computer-2-result').innerHTML = '정마담 +' + Math.floor(Betting_Account / 3) + '원';
+    document.getElementById('computer-3-result').innerHTML = '고광렬 +' + Math.floor(Betting_Account / 3) + '원';
+    // 플레이어 잔액
+    document.getElementById('Computer-1-money').innerHTML = Math.floor(user2._money.value) + '원';
+    document.getElementById('Computer-2-money').innerHTML = Math.floor(user3._money.value) + '원';
+    document.getElementById('Computer-3-money').innerHTML = Math.floor(user4._money.value) + '원';
+    document.getElementById('c_board_top').innerHTML = '';
+    document.getElementById('c_board_bottom').innerHTML = '';
+    // 카드 지우기
+    document.getElementById('User-card').innerHTML = '';
+    document.getElementById('Computer-1-card').innerHTML = '';
+    document.getElementById('Computer-2-card').innerHTML = '';
+    document.getElementById('Computer-3-card').innerHTML = '';
+    // 해골 이미지 되돌리기
+    // document.getElementById('User-picture').innerHTML = '';
+    // document.getElementById('Computer-1-picture').innerHTML = '';
+    // document.getElementById('Computer-2-picture').innerHTML = '';
+    // document.getElementById('Computer-3-picture').innerHTML = '';
+    // document.getElementById('User-picture').appendChild(user_face[0]);
+    // document.getElementById('Computer-1-picture').appendChild(user_face[1]);
+    // document.getElementById('Computer-2-picture').appendChild(user_face[2]);
+    // document.getElementById('Computer-3-picture').appendChild(user_face[3]);
 }
 
 // 다음게임 이벤트 핸들러
 function nextgame() {
-    console.log('nextgame');
-}
-
-// 게임종료 이벤트 핸들러
-function exit() {
-    console.log('exit');
+    restart_flag = 1; // 재시작 플래그 1로 설정
+    start(); // 시작 함수 실행
 }
 
 function initialize(){
     disable();
     card_id = new Array(52); // 카드 배열 초기화
 
-    user1 = new user();
-    user2 = new user();
-    user3 = new user();
-    user4 = new user();
+    // This prefix setup value
+    if(restart_flag === 1){
+        user1 = new user(user1._money);
+        user2 = new user(user2._money);
+        user3 = new user(user3._money);
+        user4 = new user(user4._money);
+    }else{
+        user1 = new user();
+        user2 = new user();
+        user3 = new user();
+        user4 = new user();
+    }
 
     result = new Array(4);
     for(var i = 0; i < 4; i++){
@@ -375,13 +415,6 @@ function initialize(){
     winner = 0; // 우승자
     winner_money = 0;
     cowinner_money = 0;
-
-    if(restart_flag == 0){
-        user1._money.value = 990;
-        user2._money.value = 990;
-        user3._money.value = 990;
-        user4._money.value = 990;
-    }
 
     restart_flag = 0;
     Betting_Account = 40;  // 총 베팅금
