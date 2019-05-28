@@ -66,10 +66,10 @@ function start() {
     game_flag++;
 
     // 최초 금액 표시
-    document.getElementById('Computer-1-money').innerHTML = Math.floor(user1._money.value)+ '원';
-    document.getElementById('Computer-2-money').innerHTML = Math.floor(user2._money.value)+ '원';
-    document.getElementById('Computer-3-money').innerHTML = Math.floor(user3._money.value)+ '원';
-    document.getElementById('User-money').innerHTML = Math.floor(user4._money.value)+ '원';
+    document.getElementById('User-money').innerHTML = Math.floor(user1._money.value)+ '원';
+    document.getElementById('Computer-1-money').innerHTML = Math.floor(user2._money.value)+ '원';
+    document.getElementById('Computer-2-money').innerHTML = Math.floor(user3._money.value)+ '원';
+    document.getElementById('Computer-3-money').innerHTML = Math.floor(user4._money.value)+ '원';
     document.getElementById('c_board_top').innerHTML = '<베팅금><br/>' + betting + '원';
     document.getElementById('c_board_bottom').innerHTML = '<총 베팅금><br>'+Betting_Account+'원';
 
